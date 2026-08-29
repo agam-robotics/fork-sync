@@ -1,0 +1,53 @@
+name: Sync forks from upstream
+
+on:
+  schedule:
+    # Every six hours. Offset from the hour on purpose: runs queued exactly on
+    # the hour sit behind the rest of GitHub's cron load and drift the most.
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Restrict to these repos (space/comma separated). Blank = every fork.'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Report what would change without writing'
+        type: boolean
+        default: false
+
+# A long run must never overlap the next scheduled one.
+concurrency:
+  group: sync-forks
+  cancel-in-progress: false
+
+# The job writes to other repositories via FORK_SYNC_TOKEN, never via
+# GITHUB_TOKEN, so the default token needs nothing beyond reading this repo.
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify token
+        env:
+          GH_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
+        run: |
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "::error::Secret FORK_SYNC_TOKEN is not set. See README.md."
+            exit 1
+          fi
+          echo "authenticated as $(gh api user --jq .login)"
+
+      - name: Sync forks
+        env:
+          GH_TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
+          ORG: ${{ github.repository_owner }}
+          ONLY: ${{ inputs.only }}
+          EXCLUDE: ${{ vars.SYNC_EXCLUDE }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: ./scripts/sync-forks.sh
