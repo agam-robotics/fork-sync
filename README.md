@@ -18,6 +18,7 @@ branch** onto the upstream default branch.
 | Branches touched | the default branch only |
 | Method | `PATCH /git/refs` with `force: false` |
 | On divergence | left untouched, reported as a warning |
+| Record kept | `STATUS.md`, committed when a fork moves |
 
 Run it by hand from the **Actions** tab (*Sync forks from upstream* → *Run
 workflow*), where `only` restricts the run to named repos and `dry_run` reports
@@ -106,10 +107,23 @@ Tags are not synced; neither are non-default branches. Both are deliberate —
 tag syncing would need force semantics to be useful, and the topic branches in
 these forks (`prod-megh7-*`, PR branches) are ours and must not be touched.
 
-## Why the repo is private
+## Why the repo is public, and what STATUS.md is for
 
-Public repositories have their scheduled workflows **disabled automatically
-after 60 days without activity**. This job commits nothing, so it would trip
-that rule and stop silently. Private repositories are exempt. The cost is
-Actions minutes, and four runs a day of roughly thirty seconds each is under an
-hour a month.
+The organisation is on the free plan, where a private repository's scheduled
+workflow never gets a hosted runner — the first run sat queued indefinitely with
+no runner assigned. Public repositories get unlimited free runners. Nothing here
+is sensitive: the PAT lives in a repository secret, not in the code, and the
+seven forks are public already.
+
+The one cost of being public is that **scheduled workflows are disabled after 60
+days without repository activity**, and a job that only writes to other repos
+would trip that and stop silently. So each run writes `STATUS.md` — the current
+head of every fork — and commits it when it changes.
+
+`STATUS.md` carries no timestamp on purpose. It changes only when a fork
+actually moves, which makes the commit log a real record of upstream activity
+instead of four no-op commits a day. With ArduPilot, PX4 and EdgeTX all
+committing most days, the repo stays comfortably active.
+
+If GitHub ever does disable the schedule, the Actions tab offers a button to
+re-enable it.

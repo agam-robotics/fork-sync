@@ -17,6 +17,7 @@
 #   ONLY      space/comma list of repo names to restrict the run to
 #   EXCLUDE   space/comma list of repo names to skip
 #   DRY_RUN   "true" to report without writing        (default: false)
+#   STATUS_FILE  path to write the post-run fork state to, if set
 #
 # Kept to bash 3.2 features so it runs on a stock macOS shell as well as on the
 # runner.
@@ -35,6 +36,12 @@ SKIP_LIST=$(pad "${EXCLUDE:-}")
 
 rows=""
 row() { rows="${rows}| \`$1\` | $2 | $3 | $4 |
+"; }
+
+# Separate from the run summary: this records where each fork actually ended
+# up, and is committed so the repo keeps having activity (see README).
+status_rows=""
+status_row() { status_rows="${status_rows}| \`$1\` | \`$2\` | \`$3\` | \`$4\` |
 "; }
 
 synced=0 uptodate=0 skipped=0 failed=0
@@ -87,6 +94,7 @@ sync_one() {
     if [ "$fork_sha" = "$up_sha" ]; then
         echo "ok    $name ($fork_branch) already at $short"
         row "$name" "\`$fork_branch\`" "\`$short\`" "up to date"
+        status_row "$name" "$parent" "$fork_branch" "$short"
         uptodate=$((uptodate + 1))
         return 0
     fi
@@ -99,6 +107,7 @@ sync_one() {
     case $status in
     identical)
         row "$name" "\`$fork_branch\`" "\`$short\`" "up to date"
+        status_row "$name" "$parent" "$fork_branch" "$short"
         uptodate=$((uptodate + 1))
         ;;
     ahead)
@@ -114,6 +123,7 @@ sync_one() {
             -f sha="$up_sha" -F force=false >/dev/null; then
             echo "sync  $name ($fork_branch) +$ahead -> $short"
             row "$name" "\`$fork_branch\`" "\`$short\`" "fast-forwarded +$ahead"
+            status_row "$name" "$parent" "$fork_branch" "$short"
             synced=$((synced + 1))
         else
             echo "::error::failed to update $ORG/$name:$fork_branch"
@@ -177,6 +187,21 @@ done
     echo
     echo "synced **$synced** · up to date **$uptodate** · skipped **$skipped** · failed **$failed**"
 } >>"${GITHUB_STEP_SUMMARY:-/dev/stdout}"
+
+# Deliberately carries no timestamp: the file then changes only when a fork
+# actually moves, so the commit log is a real record of upstream activity
+# rather than four no-op commits a day.
+if [ -n "${STATUS_FILE:-}" ] && [ "$DRY_RUN" != "true" ]; then
+    {
+        echo "# Fork sync state"
+        echo
+        echo "Written by \`.github/workflows/sync-forks.yml\`. Do not edit by hand."
+        echo
+        echo "| fork | upstream | branch | head |"
+        echo "|---|---|---|---|"
+        printf '%s' "$status_rows"
+    } >"$STATUS_FILE"
+fi
 
 echo "synced=$synced uptodate=$uptodate skipped=$skipped failed=$failed"
 [ "$failed" -eq 0 ]
