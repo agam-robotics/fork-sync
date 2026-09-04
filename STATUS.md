@@ -5,7 +5,7 @@ Written by `.github/workflows/sync-forks.yml`. Do not edit by hand.
 | fork | upstream | branch | head |
 |---|---|---|---|
 | `ExpressLRS` | `ExpressLRS/ExpressLRS` | `master` | `9ff3fa4` |
-| `PX4-Autopilot` | `PX4/PX4-Autopilot` | `main` | `3ebb292` |
+| `PX4-Autopilot` | `PX4/PX4-Autopilot` | `main` | `f8387d1` |
 | `ardupilot` | `ArduPilot/ardupilot` | `master` | `ff37fde` |
 | `betaflight` | `betaflight/betaflight` | `master` | `c68394a` |
 | `config` | `betaflight/config` | `master` | `750e6da` |
