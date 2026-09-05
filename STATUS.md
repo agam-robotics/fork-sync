@@ -6,7 +6,7 @@ Written by `.github/workflows/sync-forks.yml`. Do not edit by hand.
 |---|---|---|---|
 | `ExpressLRS` | `ExpressLRS/ExpressLRS` | `master` | `9ff3fa4` |
 | `PX4-Autopilot` | `PX4/PX4-Autopilot` | `main` | `6dc8933` |
-| `ardupilot` | `ArduPilot/ardupilot` | `master` | `fde1652` |
+| `ardupilot` | `ArduPilot/ardupilot` | `master` | `3b28cfd` |
 | `betaflight` | `betaflight/betaflight` | `master` | `79eeb37` |
 | `config` | `betaflight/config` | `master` | `750e6da` |
 | `edgetx` | `EdgeTX/edgetx` | `main` | `11ccd67` |
