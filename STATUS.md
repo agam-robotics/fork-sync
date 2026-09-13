@@ -10,6 +10,6 @@ Written by `.github/workflows/sync-forks.yml`. Do not edit by hand.
 | `ardupilot` | `ArduPilot/ardupilot` | `master` | `acef45e` |
 | `betaflight` | `betaflight/betaflight` | `master` | `f1c74e2` |
 | `config` | `betaflight/config` | `master` | `d78c5a2` |
-| `edgetx` | `EdgeTX/edgetx` | `main` | `65bb97d` |
+| `edgetx` | `EdgeTX/edgetx` | `main` | `244aab8` |
 | `inav` | `iNavFlight/inav` | `master` | `bbc0553` |
 | `usb-ids` | `Dronecode/usb-ids` | `main` | `246b23c` |
