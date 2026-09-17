@@ -8,7 +8,7 @@ Written by `.github/workflows/sync-forks.yml`. Do not edit by hand.
 | `NuttX` | `PX4/NuttX` | `px4_firmware_nuttx-12.12.0+` | `030417d` |
 | `PX4-Autopilot` | `PX4/PX4-Autopilot` | `main` | `1cfd3f8` |
 | `ardupilot` | `ArduPilot/ardupilot` | `master` | `665c0de` |
-| `betaflight` | `betaflight/betaflight` | `master` | `3fb949b` |
+| `betaflight` | `betaflight/betaflight` | `master` | `6dd3dbe` |
 | `config` | `betaflight/config` | `master` | `238457b` |
 | `edgetx` | `EdgeTX/edgetx` | `main` | `abeed9f` |
 | `inav` | `iNavFlight/inav` | `master` | `e4278ef` |
