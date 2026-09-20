@@ -11,5 +11,5 @@ Written by `.github/workflows/sync-forks.yml`. Do not edit by hand.
 | `betaflight` | `betaflight/betaflight` | `master` | `ac4816e` |
 | `config` | `betaflight/config` | `master` | `55232c8` |
 | `edgetx` | `EdgeTX/edgetx` | `main` | `f5c13ab` |
-| `inav` | `iNavFlight/inav` | `master` | `e4278ef` |
+| `inav` | `iNavFlight/inav` | `master` | `4526102` |
 | `usb-ids` | `Dronecode/usb-ids` | `main` | `53c18cb` |
