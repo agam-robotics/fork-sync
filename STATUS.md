@@ -10,5 +10,5 @@ Written by `.github/workflows/sync-forks.yml`. Do not edit by hand.
 | `ardupilot` | `ArduPilot/ardupilot` | `master` | `e204ca7` |
 | `betaflight` | `betaflight/betaflight` | `master` | `b2fdc29` |
 | `config` | `betaflight/config` | `master` | `15d8c3f` |
-| `edgetx` | `EdgeTX/edgetx` | `main` | `1fb3184` |
+| `edgetx` | `EdgeTX/edgetx` | `main` | `5204f6c` |
 | `usb-ids` | `Dronecode/usb-ids` | `main` | `054695f` |
