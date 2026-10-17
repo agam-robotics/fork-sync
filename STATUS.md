@@ -5,9 +5,9 @@ Written by `.github/workflows/sync-forks.yml`. Do not edit by hand.
 | fork | upstream | branch | head |
 |---|---|---|---|
 | `ExpressLRS` | `ExpressLRS/ExpressLRS` | `master` | `dd96654` |
-| `NuttX` | `PX4/NuttX` | `px4_firmware_nuttx-12.12.0+` | `c863b92` |
-| `PX4-Autopilot` | `PX4/PX4-Autopilot` | `main` | `1bf4627` |
-| `ardupilot` | `ArduPilot/ardupilot` | `master` | `8ab6afd` |
+| `NuttX` | `PX4/NuttX` | `px4_firmware_nuttx-12.12.0+` | `ca46073` |
+| `PX4-Autopilot` | `PX4/PX4-Autopilot` | `main` | `9357961` |
+| `ardupilot` | `ArduPilot/ardupilot` | `master` | `4a2081a` |
 | `betaflight` | `betaflight/betaflight` | `master` | `41a5b43` |
 | `config` | `betaflight/config` | `master` | `0b73c1f` |
 | `edgetx` | `EdgeTX/edgetx` | `main` | `65db64b` |
