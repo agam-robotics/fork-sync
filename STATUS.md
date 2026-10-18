@@ -4,7 +4,7 @@ Written by `.github/workflows/sync-forks.yml`. Do not edit by hand.
 
 | fork | upstream | branch | head |
 |---|---|---|---|
-| `ExpressLRS` | `ExpressLRS/ExpressLRS` | `master` | `dd96654` |
+| `ExpressLRS` | `ExpressLRS/ExpressLRS` | `master` | `9681156` |
 | `NuttX` | `PX4/NuttX` | `px4_firmware_nuttx-12.12.0+` | `ca46073` |
 | `PX4-Autopilot` | `PX4/PX4-Autopilot` | `main` | `ddcaad6` |
 | `ardupilot` | `ArduPilot/ardupilot` | `master` | `f48fabc` |
