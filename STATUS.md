@@ -6,8 +6,8 @@ Written by `.github/workflows/sync-forks.yml`. Do not edit by hand.
 |---|---|---|---|
 | `ExpressLRS` | `ExpressLRS/ExpressLRS` | `master` | `36c1bf2` |
 | `NuttX` | `PX4/NuttX` | `px4_firmware_nuttx-12.12.0+` | `036f594` |
-| `PX4-Autopilot` | `PX4/PX4-Autopilot` | `main` | `cf0797e` |
-| `apache-nuttx` | `apache/nuttx` | `master` | `1d36eb3` |
+| `PX4-Autopilot` | `PX4/PX4-Autopilot` | `main` | `cd2b157` |
+| `apache-nuttx` | `apache/nuttx` | `master` | `846e525` |
 | `ardupilot` | `ArduPilot/ardupilot` | `master` | `437a330` |
 | `betaflight` | `betaflight/betaflight` | `master` | `ecfb956` |
 | `config` | `betaflight/config` | `master` | `4961818` |
