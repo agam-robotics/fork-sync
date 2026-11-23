@@ -6,7 +6,8 @@ every six hours.
 ## Behaviour
 
 - Forks are discovered at run time; a new one is picked up automatically.
-- Default branch only. Topic branches are never read or written.
+- Default branch only, except `PX4-Autopilot`, which syncs `main` because its
+  default is the orphan `agam-ci`. Topic branches are never read or written.
 - Updates the ref with `PATCH /git/refs`, `force: false`, and only when the
   fork's default branch is a strict ancestor of upstream.
 - A diverged fork is reported and left alone. No force push, reset or delete.

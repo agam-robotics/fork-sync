@@ -9,8 +9,8 @@
 # upstream, so a fork either ends up identical to upstream or is left untouched
 # and reported. Nothing here forces, resets or deletes.
 #
-# Only the default branch is synced. Topic branches (prod-*, PR branches) are
-# never read or written.
+# Only the default branch is synced, except PX4-Autopilot, which syncs main.
+# Topic branches (prod-*, PR branches) are never read or written.
 #
 # Environment:
 #   ORG       organisation to scan                    (default: agam-robotics)
@@ -77,6 +77,11 @@ sync_one() {
     parent=$(printf '%s' "$info" | jq -r '.parent.full_name // empty')
     fork_branch=$(printf '%s' "$info" | jq -r '.default_branch')
     up_branch=$(printf '%s' "$info" | jq -r '.parent.default_branch // empty')
+
+    # Default branch is the orphan agam-ci; main is the upstream mirror.
+    case $name in
+    PX4-Autopilot) fork_branch=main ;;
+    esac
 
     if [ -z "$parent" ]; then
         # A repo keeps fork:true even if upstream is deleted or made private.
